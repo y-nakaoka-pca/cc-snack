@@ -11,6 +11,7 @@ const createserver = () => {
   app.use(express.json());
 
   app.use("/", express.static(path.join(__dirname, "../front/login")));
+
   app.use(
     "/home/:from_user_id/:to_user_id",
     express.static(path.join(__dirname, "../front/home"))
@@ -52,6 +53,7 @@ const createserver = () => {
 
     res.json(result[0]);
   });
+
   app.post("/api/messages", async (req, res) => {
     const { text, from, to } = req.body;
     const result = await db("messages").insert(
@@ -79,6 +81,7 @@ const createserver = () => {
 
     res.json(result[0]);
   });
+
   app.patch("/api/messages/:message_id", async (req, res) => {
     const { message_id } = req.params;
     const body = req.body;
@@ -98,6 +101,7 @@ const createserver = () => {
 
     res.json();
   });
+
   app.delete("/api/messages/:message_id", async (req, res) => {
     const { message_id } = req.params;
     await db("messages").where({ id: message_id }).delete();

@@ -1,7 +1,7 @@
 # Snack
 
 ## About
-This project was created during the solo project training.  
+This project was created during a solo project training.  
 Snack was modeled after Slack, which is awesome communication app!
 
 ## Getting Started

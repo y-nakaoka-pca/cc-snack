@@ -1,5 +1,6 @@
 const createServer = require("./src/server/server");
 
 const app = createServer();
-
-// TODO: server.js呼べないか調べる
+app.listen(3000, async () => {
+  console.log("Server listening on port 3000");
+});

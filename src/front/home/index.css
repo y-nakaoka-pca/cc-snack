@@ -155,7 +155,8 @@ ul {
   color: white;
   font-size: large;
   font-weight: bold;
-
 }
 
-.sendButton:hover {}
+.sendButton:hover {
+  cursor: pointer;
+}

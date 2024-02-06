@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: 2rem 1fr;
+  height: 100%;
+}
+
+.header {
+  background-color: #270b28;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+
+  padding: 0 1rem;
+}
+
+.main {
+  padding-top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.login {
+  width: 40rem;
+  height: 20rem;
+  border: black 1px solid;
+
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+
+  border-radius: 0.5rem;
+}
+
+.loginHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: center;
+  background-color: #3f0e40;
+}
+
+h1 {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+
+}
+
+.loginMain {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.userSelect {
+  height: 2rem;
+  width: 20rem;
+  font-size: 1.25rem;
+}
+
+.userOption {
+  text-align: center;
+}
+
+.logionButton {
+  height: 2rem;
+  width: 20rem;
+  border: 0;
+  background-color: rgb(0, 122, 90);
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.logionButton:hover {
+  cursor: pointer;
+}

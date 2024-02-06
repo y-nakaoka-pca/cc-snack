@@ -109,6 +109,18 @@ const createserver = () => {
     res.json();
   });
 
+  app.delete("/api/users", async (req, res) => {
+    await db("users").delete();
+
+    res.json();
+  });
+
+  app.delete("/api/messages", async (req, res) => {
+    await db("messages").delete();
+
+    res.json();
+  });
+
   return app;
 };
 

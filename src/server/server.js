@@ -41,16 +41,6 @@ const createserver = () => {
     res.json(result);
   });
 
-  // app.get("/api/users/:user_id/messages", async (req, res) => {
-  //   const { user_id } = req.params;
-  //   const result = await db
-  //     .select()
-  //     .from("messages")
-  //     .where("from", user_id)
-  //     .orWhere("to", user_id);
-  //   res.json(result);
-  // });
-
   app.post("/api/users", async (req, res) => {
     const { name } = req.body;
     const result = await db("users").insert(
@@ -60,7 +50,7 @@ const createserver = () => {
       ["id", "name"]
     );
 
-    res.json(result);
+    res.json(result[0]);
   });
   app.post("/api/messages", async (req, res) => {
     const { text, from, to } = req.body;
@@ -74,7 +64,7 @@ const createserver = () => {
       ["id", "text", "datetime", "from", "to"]
     );
 
-    res.json(result);
+    res.json(result[0]);
   });
 
   app.patch("/api/users/:user_id", async (req, res) => {
@@ -87,7 +77,7 @@ const createserver = () => {
       ["id", "name"]
     );
 
-    res.json(result);
+    res.json(result[0]);
   });
   app.patch("/api/messages/:message_id", async (req, res) => {
     const { message_id } = req.params;
@@ -99,7 +89,7 @@ const createserver = () => {
       ["id", "text", "datetime", "from", "to"]
     );
 
-    res.json(result);
+    res.json(result[0]);
   });
 
   app.delete("/api/users/:user_id", async (req, res) => {

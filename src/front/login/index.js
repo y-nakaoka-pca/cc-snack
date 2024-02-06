@@ -7,6 +7,7 @@ window.addEventListener("load", async () => {
   users.forEach((user) => {
     const optionEl = document.createElement("option");
     optionEl.value = user.id;
+    optionEl.className = "userOption";
     optionEl.textContent = user.name;
 
     userSelectEl.appendChild(optionEl);

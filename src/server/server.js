@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const db = require("../database/knex");
 
 // TODO: ステータスコード
@@ -9,8 +10,11 @@ const createserver = () => {
   const app = express();
   app.use(express.json());
 
-  app.get("/", (req, res) => {});
-  app.get("/home", (req, res) => {});
+  app.use("/", express.static(path.join(__dirname, "../front/login")));
+  app.use(
+    "/home/:from_user_id/:to_user_id",
+    express.static(path.join(__dirname, "../front/home"))
+  );
 
   app.get("/api/users", async (req, res) => {
     const result = await db.select().from("users");
@@ -18,24 +22,40 @@ const createserver = () => {
   });
 
   app.get("/api/messages", async (req, res) => {
-    const result = await db.select().from("messages");
-    res.json(result);
-  });
-  app.get("/api/users/:user_id/messages", async (req, res) => {
-    const { user_id } = req.params;
-    const result = await db
-      .select()
-      .from("messages")
-      .where("from", user_id)
-      .orWhere("to", user_id);
+    const { from, to } = req.query;
+    // TODO: 良い書き方ありそう
+    if (from && to) {
+      result = await db
+        .select()
+        .from("messages")
+        .where("from", from)
+        .andWhere("to", to);
+    } else if (from) {
+      result = await db.select().from("messages").where("from", from);
+    } else if (to) {
+      result = await db.select().from("messages").where("to", to);
+    } else {
+      result = await db.select().from("messages");
+    }
+
     res.json(result);
   });
 
+  // app.get("/api/users/:user_id/messages", async (req, res) => {
+  //   const { user_id } = req.params;
+  //   const result = await db
+  //     .select()
+  //     .from("messages")
+  //     .where("from", user_id)
+  //     .orWhere("to", user_id);
+  //   res.json(result);
+  // });
+
   app.post("/api/users", async (req, res) => {
-    const body = req.body;
+    const { name } = req.body;
     const result = await db("users").insert(
       {
-        name: body.name,
+        name,
       },
       ["id", "name"]
     );
@@ -43,13 +63,13 @@ const createserver = () => {
     res.json(result);
   });
   app.post("/api/messages", async (req, res) => {
-    const body = req.body;
+    const { text, from, to } = req.body;
     const result = await db("messages").insert(
       {
-        text: body.text,
+        text,
         datetime: new Date(),
-        from: body.from,
-        to: body.to,
+        from,
+        to,
       },
       ["id", "text", "datetime", "from", "to"]
     );

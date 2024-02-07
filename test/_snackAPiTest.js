@@ -6,6 +6,8 @@ chai.should();
 
 const server = createserver();
 
+// TODO: テスト用DBを作るか、DBをモック化する
+
 describe("snack serverのテスト", () => {
   let request;
   let testUser;
@@ -79,4 +81,15 @@ describe("snack serverのテスト", () => {
     const res = await request.delete(`/api/users/${testUser.id}`);
     res.should.be.json;
   });
+
+  // 全データが削除されてしまうのでコメントアウト
+  // it("DELETE /api/messages", async () => {
+  //   const res = await request.delete(`/api/messages`);
+  //   res.should.be.json;
+  // });
+
+  // it("DELETE /api/users", async () => {
+  //   const res = await request.delete(`/api/users`);
+  //   res.should.be.json;
+  // });
 });

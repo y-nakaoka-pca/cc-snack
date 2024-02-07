@@ -14,6 +14,11 @@ Snack was modeled after Slack, which is awesome communication app!
 #### Set Config
 Set your `username` and `password` in `.env` file.
 
+``` .env
+DB_USER=postgres
+DB_PASSWORD=postgres
+```
+
 #### Create database
 `psql -f ./src/database/createDatabase/createDatabase.sql -U postgres`
 

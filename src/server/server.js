@@ -19,7 +19,7 @@ const createserver = () => {
 
   app.get("/api/users", async (req, res) => {
     const result = await db.select().from("users");
-    res.json(result);
+    res.status(200).json(result);
   });
 
   app.get("/api/messages", async (req, res) => {
@@ -39,7 +39,7 @@ const createserver = () => {
       result = await db.select().from("messages");
     }
 
-    res.json(result);
+    res.status(200).json(result);
   });
 
   app.post("/api/users", async (req, res) => {
@@ -51,7 +51,7 @@ const createserver = () => {
       ["id", "name"]
     );
 
-    res.json(result[0]);
+    res.status(201).json(result[0]);
   });
 
   app.post("/api/messages", async (req, res) => {
@@ -66,7 +66,7 @@ const createserver = () => {
       ["id", "text", "datetime", "from", "to"]
     );
 
-    res.json(result[0]);
+    res.status(201).json(result[0]);
   });
 
   app.patch("/api/users/:user_id", async (req, res) => {
@@ -79,7 +79,7 @@ const createserver = () => {
       ["id", "name"]
     );
 
-    res.json(result[0]);
+    res.status(200).json(result[0]);
   });
 
   app.patch("/api/messages/:message_id", async (req, res) => {
@@ -92,33 +92,33 @@ const createserver = () => {
       ["id", "text", "datetime", "from", "to"]
     );
 
-    res.json(result[0]);
+    res.status(200).json(result[0]);
   });
 
   app.delete("/api/users/:user_id", async (req, res) => {
     const { user_id } = req.params;
     await db("users").where({ id: user_id }).delete();
 
-    res.json();
+    res.status(200).json();
   });
 
   app.delete("/api/messages/:message_id", async (req, res) => {
     const { message_id } = req.params;
     await db("messages").where({ id: message_id }).delete();
 
-    res.json();
+    res.status(200).json();
   });
 
   app.delete("/api/users", async (req, res) => {
     await db("users").delete();
 
-    res.json();
+    res.status(200).json();
   });
 
   app.delete("/api/messages", async (req, res) => {
     await db("messages").delete();
 
-    res.json();
+    res.status(200).json();
   });
 
   return app;

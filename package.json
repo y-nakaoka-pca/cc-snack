@@ -1,7 +1,7 @@
 {
   "name": "cc-snack",
   "version": "1.0.0",
-  "description": "My first solo poroject!",
+  "description": "My first solo project!",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",

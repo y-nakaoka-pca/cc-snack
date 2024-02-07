@@ -11,6 +11,9 @@ Snack was modeled after Slack, which is awesome communication app!
 
 ### Setup database
 
+#### Set Config
+Set your `username` and `password` in `.env` file.
+
 #### Create database
 `psql -f ./src/database/createDatabase/createDatabase.sql -U postgres`
 
@@ -34,16 +37,26 @@ Please refer to [APIs](apis) for the detailed endpoint.
 `npm run start`
 
 ## APIs
+
+### Users
 - `GET /api/users`
-- `GET /api/messages`
-  - query params: `from`, `to`
 - `POST /api/users`
   - request body: `name`
-- `POST /api/messages`
-  - request body: `text`, `from`, `to`
 - `PATCH /api/users/:user_id`
+  - request body: `text`, `from`, `to`
+- `DELETE /api/users/:user_id`
+- `DELETE /api/users`
+> [!WARNING]  
+> All users will be deleted by this API!
+
+### Messages
+- `GET /api/messages`
+  - query params: `from`, `to`
+- `POST /api/messages`
   - request body: `text`, `from`, `to`
 - `PATCH /api/messages/:message_id`
   - request body: `text`
-- `DELETE /api/users/:user_id`
 - `DELETE /api/messages/:message_id`
+- `DELETE /api/messages`
+> [!WARNING]  
+> All messages will be deleted by this API!

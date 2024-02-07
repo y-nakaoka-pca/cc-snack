@@ -28,6 +28,13 @@ ul {
   align-items: center;
 
   padding: 0 1rem;
+  gap: 1rem;
+}
+
+.headerLogout {
+  color: #c3c3c3;
+  font-size: 0.75rem;
+  text-decoration: none;
 }
 
 .headerUserName {
